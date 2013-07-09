@@ -1,25 +1,50 @@
-<%= form_for(@deck) do |f| %>
-  <% if @deck.errors.any? %>
+<%#= form_for(@deck) do |f| %>
+<!--   <%# if @deck.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
+      <h2><%#= pluralize(@deck.errors.count, "error") %> prohibited this deck from being saved:</h2>
 
       <ul>
-      <% @deck.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+      <%# @deck.errors.full_messages.each do |msg| %>
+        <li><%#= msg %></li>
+      <%# end %>
       </ul>
     </div>
-  <% end %>
+  <%# end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%#= f.label :name %><br />
+    <%#= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
+    <%#= f.label :description %><br />
+    <%#= f.text_field :description %>
   </div>
   <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%#= f.submit %>
+  </div> -->
+<%# end %>
+
+<%= form_tag decks_path do %>
+  
+  <%= label_tag      "deck[name]", "Name" %>
+  <%= text_field_tag "deck[name]" %><br>
+
+  <%= label_tag      "deck[description]", "Description" %>
+  <%= text_area_tag  "deck[description]" %><br><br>
+  
+  <ol>
+  <% 2.times do |i|%>
+    <li>
+    <%= label_tag      "cards[][name]", "Card #{i+1} Name" %>
+    <%= text_field_tag "cards[][name]" %><br>
+
+    <%= label_tag      "cards[][strength]", "Card #{i+1} Strength" %>
+    <%= text_field_tag "cards[][strength]" %><br>
+    </li>
+  <% end %>
+  </ol>
+  <br>
+
+  <%= submit_tag "Create New" %>
+
 <% end %>

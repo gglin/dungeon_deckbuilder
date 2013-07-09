@@ -40,17 +40,10 @@ class DecksController < ApplicationController
   # POST /decks
   # POST /decks.json
   def create
-    @deck = Deck.new()
-    @deck.name = params[:deck][:name]
-
-    @deck.description = deck[:description]
+    @deck = Deck.new(params[:deck])
 
     params[:cards].each do |card|
-      card = Card.new
-      card[:name] = card.name
-      card[:strength] = card.strength
-
-      @deck.cards << card
+      @deck.cards.build(card)
     end
 
     if @deck.save

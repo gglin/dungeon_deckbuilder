@@ -14,7 +14,7 @@
   <tr>
     <td><%= card.name %></td>
     <td><%= card.strength %></td>
-    <td><%= card.deck_id %></td>
+    <td><%= link_to card.deck.name, deck_path(card.deck_id) %></td>
     <td><%= link_to 'Show', card %></td>
     <td><%= link_to 'Edit', edit_card_path(card) %></td>
     <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,3 +1,4 @@
+<% @decks = Deck.all %>
 <%= form_for(@card) do |f| %>
   <% if @card.errors.any? %>
     <div id="error_explanation">
@@ -20,8 +21,9 @@
     <%= f.number_field :strength %>
   </div>
   <div class="field">
-    <%= f.label :deck_id %><br />
-    <%= f.number_field :deck_id %>
+    <% f.label :deck_id %><br />
+    <%# f.number_field :deck_id %>
+    <%= f.select :deck_id, @decks.sort {|d1, d2| d1.name.downcase<=>d2.name.downcase}.collect {|d| [ d.name, d.id ] }, {:include_blank => 'select a Deck'} %>
   </div>
   <div class="actions">
     <%= f.submit %>

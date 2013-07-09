@@ -12,7 +12,7 @@
 
 <p>
   <b>Deck:</b>
-  <%= @card.deck_id %>
+  <%= link_to "#{@card.deck.name}", deck_path(@card.deck_id) %>
 </p>
 
 
