@@ -25,6 +25,7 @@ class DecksController < ApplicationController
   # GET /decks/new.json
   def new
     @deck = Deck.new
+    @num_cards = 2
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class DecksController < ApplicationController
   # GET /decks/1/edit
   def edit
     @deck = Deck.find(params[:id])
+    @num_cards = @deck.cards.size
   end
 
   # POST /decks

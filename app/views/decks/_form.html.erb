@@ -27,19 +27,22 @@
 <%= form_tag decks_path do %>
   
   <%= label_tag      "deck[name]", "Name" %>
-  <%= text_field_tag "deck[name]" %><br>
+  <%= text_field_tag "deck[name]", @deck.name %><br>
 
   <%= label_tag      "deck[description]", "Description" %>
-  <%= text_area_tag  "deck[description]" %><br><br>
+  <%= text_area_tag  "deck[description]", @deck.description %><br><br>
   
   <ol>
-  <% 2.times do |i|%>
+  <% @num_cards.times do |i|%>
     <li>
+    <% card_name     = @deck.cards==[] ?  ""  :  @deck.cards[i].name %>
+    <% card_strength = @deck.cards==[] ?  ""  :  @deck.cards[i].strength %>
+
     <%= label_tag      "cards[][name]", "Card #{i+1} Name" %>
-    <%= text_field_tag "cards[][name]" %><br>
+    <%= text_field_tag "cards[][name]", card_name %><br>
 
     <%= label_tag      "cards[][strength]", "Card #{i+1} Strength" %>
-    <%= text_field_tag "cards[][strength]" %><br>
+    <%= text_field_tag "cards[][strength]", card_strength %><br>
     </li>
   <% end %>
   </ol>
